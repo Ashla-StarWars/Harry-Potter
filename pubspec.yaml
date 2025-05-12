@@ -1,19 +1,35 @@
-name: harry_potter
-description: "A new Flutter project."
-publish_to: 'none'
-version: 0.1.0
+name: harry_potter_app
+description: Una aplicación de Harry Potter que utiliza patrón MVC y consume una API pública.
+
+# La siguiente línea evita que el paquete sea publicado accidentalmente en pub.dev
+publish_to: 'none' 
+
+# Versión y número de build - importante para despliegue
+version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
+  # Paquetes externos
+  http: ^1.1.0           # Para realizar peticiones HTTP a la API
+  provider: ^6.0.5       # Para la gestión del estado
+  cached_network_image: ^3.3.0  # Para cargar y cachear imágenes de internet
+  google_fonts: ^5.1.0   # Para utilizar fuentes de Google
+  
+  # Iconos de Cupertino
+  cupertino_icons: ^1.0.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+    
+  # Herramientas de análisis de código
+  flutter_lints: ^2.0.3
 
 flutter:
+  # El siguiente bloque asegura que el material Icons esté incluido
   uses-material-design: true
