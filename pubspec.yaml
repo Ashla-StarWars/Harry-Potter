@@ -37,3 +37,7 @@ flutter:
   assets:
     - assets/
     - assets/images/Harry_Potter_wordmark.svg
+    - assets/images/gryffindor.png
+    - assets/images/hufflepuff.png
+    - assets/images/ravenclaw.png
+    - assets/images/slytherin.png
