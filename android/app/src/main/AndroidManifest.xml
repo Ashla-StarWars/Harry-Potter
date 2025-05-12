@@ -2,7 +2,7 @@
     <application
         android:label="harry_potter"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/snitch">
         <activity
             android:name=".MainActivity"
             android:exported="true"
