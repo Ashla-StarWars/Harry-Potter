@@ -22,9 +22,12 @@ class _StaffScreenState extends State<StaffScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Staff de Hogwarts'),
+        title: Text('Staff de Hogwarts', 
+            style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.amber),
       ),
       body: Consumer<CharacterController>(
         builder: (context, controller, child) {
@@ -91,6 +94,7 @@ class _StaffScreenState extends State<StaffScreen> {
 
   Widget _buildStaffCard(BuildContext context, Character staffMember) {
     return Card(
+      color: Colors.white.withOpacity(0.1),
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 4,
       shape: RoundedRectangleBorder(
@@ -146,6 +150,7 @@ class _StaffScreenState extends State<StaffScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(height: 4),
@@ -158,11 +163,15 @@ class _StaffScreenState extends State<StaffScreen> {
                         ),
                       ),
                     SizedBox(height: 4),
-                    Text('Miembro del Staff de Hogwarts'),
+                    Text('Miembro del Staff de Hogwarts' ,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white70,
+                      )),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, size: 16),
+              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.amber),
             ],
           ),
         ),

@@ -15,16 +15,20 @@ class _AllCharactersScreenState extends State<AllCharactersScreen> {
     super.initState();
     // Fetch characters when the screen loads
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<CharacterController>(context, listen: false).fetchAllCharacters();
+      Provider.of<CharacterController>(context, listen: false)
+          .fetchAllCharacters();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Todos los Personajes'),
+        title:
+            Text('Todos los Personajes', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.amber),
       ),
       body: Consumer<CharacterController>(
         builder: (context, controller, child) {
@@ -91,6 +95,7 @@ class _AllCharactersScreenState extends State<AllCharactersScreen> {
 
   Widget _buildCharacterCard(BuildContext context, Character character) {
     return Card(
+      color: Colors.white.withOpacity(0.1),
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 4,
       shape: RoundedRectangleBorder(
@@ -146,6 +151,7 @@ class _AllCharactersScreenState extends State<AllCharactersScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(height: 4),
@@ -164,11 +170,15 @@ class _AllCharactersScreenState extends State<AllCharactersScreen> {
                           : character.hogwartsStaff
                               ? 'Staff'
                               : character.species,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white70,
+                      ),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, size: 16),
+              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.amber),
             ],
           ),
         ),

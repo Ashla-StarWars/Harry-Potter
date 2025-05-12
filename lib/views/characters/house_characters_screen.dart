@@ -15,33 +15,38 @@ class _HouseCharactersScreenState extends State<HouseCharactersScreen> {
     {
       'name': 'Gryffindor',
       'color': Colors.red,
-      'image': 'https://static.wikia.nocookie.net/harrypotter/images/b/b1/Gryffindor_CrestR.png'
+      'image':
+          'https://static.wikia.nocookie.net/harrypotter/images/b/b1/Gryffindor_CrestR.png'
     },
     {
       'name': 'Slytherin',
       'color': Colors.green,
-      'image': 'https://static.wikia.nocookie.net/harrypotter/images/0/00/Slytherin_CrestR.png'
+      'image':
+          'https://static.wikia.nocookie.net/harrypotter/images/0/00/Slytherin_CrestR.png'
     },
     {
       'name': 'Ravenclaw',
       'color': Colors.blue,
-      'image': 'https://static.wikia.nocookie.net/harrypotter/images/7/71/Ravenclaw_CrestR.png'
+      'image':
+          'https://static.wikia.nocookie.net/harrypotter/images/7/71/Ravenclaw_CrestR.png'
     },
     {
       'name': 'Hufflepuff',
       'color': Colors.amber[700],
-      'image': 'https://static.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_CrestR.png'
+      'image':
+          'https://static.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_CrestR.png'
     },
   ];
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    
+
     // Get arguments
-    final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+    final args =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
     final showHouseSelector = args?['showHouseSelector'] as bool? ?? true;
-    
+
     if (!showHouseSelector && args != null && args.containsKey('house')) {
       _selectedHouse = args['house'] as String;
       _fetchHouseCharacters();
@@ -58,13 +63,21 @@ class _HouseCharactersScreenState extends State<HouseCharactersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(_selectedHouse != null 
-            ? 'Personajes de $_selectedHouse' 
-            : 'Casas de Hogwarts'),
+        iconTheme: IconThemeData(color: Colors.amber),
+        title: Text(
+            _selectedHouse != null
+                ? 'Personajes de $_selectedHouse'
+                : 'Casas de Hogwarts',
+            style: TextStyle(
+              color: Colors.white,
+            )),
         backgroundColor: Colors.black,
       ),
-      body: _selectedHouse == null ? _buildHouseSelection() : _buildCharactersList(),
+      body: _selectedHouse == null
+          ? _buildHouseSelection()
+          : _buildCharactersList(),
     );
   }
 
@@ -72,7 +85,8 @@ class _HouseCharactersScreenState extends State<HouseCharactersScreen> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage('https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'),
+          image: NetworkImage(
+              'https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80'),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
             Colors.black.withOpacity(0.7),
@@ -302,6 +316,7 @@ class _HouseCharactersScreenState extends State<HouseCharactersScreen> {
 
   Widget _buildCharacterCard(BuildContext context, Character character) {
     return Card(
+      color: Colors.white.withOpacity(0.1),
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 4,
       shape: RoundedRectangleBorder(
@@ -357,6 +372,7 @@ class _HouseCharactersScreenState extends State<HouseCharactersScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
+                        color: Colors.white,
                       ),
                     ),
                     SizedBox(height: 4),
@@ -374,11 +390,15 @@ class _HouseCharactersScreenState extends State<HouseCharactersScreen> {
                           : character.hogwartsStaff
                               ? 'Staff'
                               : character.species,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white70,
+                      ),
                     ),
                   ],
                 ),
               ),
-              Icon(Icons.arrow_forward_ios, size: 16),
+              Icon(Icons.arrow_forward_ios, size: 16, color: Colors.amber),
             ],
           ),
         ),

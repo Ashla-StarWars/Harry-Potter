@@ -21,8 +21,10 @@ class _SpellsScreenState extends State<SpellsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Hechizos'),
+        iconTheme: IconThemeData(color: Colors.amber),
+        title: Text('Hechizos', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
       ),
       body: Consumer<SpellController>(
@@ -90,6 +92,7 @@ class _SpellsScreenState extends State<SpellsScreen> {
 
   Widget _buildSpellCard(Spell spell) {
     return Card(
+            color: Colors.white.withOpacity(0.1),
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 3,
       shape: RoundedRectangleBorder(
@@ -112,6 +115,7 @@ class _SpellsScreenState extends State<SpellsScreen> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -122,6 +126,7 @@ class _SpellsScreenState extends State<SpellsScreen> {
                 spell.description,
                 style: TextStyle(
                   fontSize: 14,
+                  color: Colors.white70,
                 ),
               ),
             ],

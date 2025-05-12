@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import '../controllers/auth_controller.dart';
 import '../routes/routes.dart';
@@ -16,12 +17,14 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Consumer<AuthController>(
         builder: (context, authController, child) {
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage('https://wallpaperaccess.com/full/4846718.jpg'),
+                image: NetworkImage(
+                    'https://wallpaperaccess.com/full/4846718.jpg'),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.6),
@@ -46,10 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Image.network(
-                              'https://upload.wikimedia.org/wikipedia/commons/6/6e/Harry_Potter_wordmark.svg',
-                              height: 80,
-                              color: Colors.white,
+                            SvgPicture.asset(
+                              'assets/images/Harry_Potter_wordmark.svg',
+                              width: 150,
+                              height: 150,
+                              colorFilter: const ColorFilter.mode(
+                                  Colors.white, BlendMode.srcIn),
                             ),
                             SizedBox(height: 32),
                             TextFormField(
@@ -58,13 +63,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               decoration: InputDecoration(
                                 labelText: 'Usuario',
                                 labelStyle: TextStyle(color: Colors.white70),
-                                prefixIcon: Icon(Icons.person, color: Colors.amber),
+                                prefixIcon:
+                                    Icon(Icons.person, color: Colors.amber),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.amber),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber, width: 2),
+                                  borderSide:
+                                      BorderSide(color: Colors.amber, width: 2),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
@@ -83,13 +90,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               decoration: InputDecoration(
                                 labelText: 'Contraseña',
                                 labelStyle: TextStyle(color: Colors.white70),
-                                prefixIcon: Icon(Icons.lock, color: Colors.amber),
+                                prefixIcon:
+                                    Icon(Icons.lock, color: Colors.amber),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.amber),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.amber, width: 2),
+                                  borderSide:
+                                      BorderSide(color: Colors.amber, width: 2),
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
@@ -117,7 +126,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.amber,
                                 foregroundColor: Colors.black,
-                                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 32, vertical: 12),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -126,21 +136,26 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ? null
                                   : () async {
                                       if (_formKey.currentState!.validate()) {
-                                        final success = await authController.login(
+                                        final success =
+                                            await authController.login(
                                           _usernameController.text,
                                           _passwordController.text,
                                         );
-                                        
+
                                         if (success) {
-                                          Navigator.pushReplacementNamed(context, AppRoutes.home);
+                                          Navigator.pushReplacementNamed(
+                                              context, AppRoutes.home);
                                         }
                                       }
                                     },
                               child: authController.isLoading
-                                  ? CircularProgressIndicator(color: Colors.white)
+                                  ? CircularProgressIndicator(
+                                      color: Colors.white)
                                   : Text(
                                       'INICIAR SESIÓN',
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold),
                                     ),
                             ),
                           ],

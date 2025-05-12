@@ -19,6 +19,7 @@ dependencies:
   provider: ^6.0.5       # Para la gestión del estado
   cached_network_image: ^3.3.0  # Para cargar y cachear imágenes de internet
   google_fonts: ^5.1.0   # Para utilizar fuentes de Google
+  flutter_svg: ^2.0.7 
   
   # Iconos de Cupertino
   cupertino_icons: ^1.0.6
@@ -33,3 +34,6 @@ dev_dependencies:
 flutter:
   # El siguiente bloque asegura que el material Icons esté incluido
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/Harry_Potter_wordmark.svg

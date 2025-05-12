@@ -9,8 +9,9 @@ class HomeScreen extends StatelessWidget {
     final authController = Provider.of<AuthController>(context);
     
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text('Harry Potter App'),
+        title: Text('Harry Potter App', style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
         actions: [
           IconButton(
@@ -19,11 +20,13 @@ class HomeScreen extends StatelessWidget {
               authController.logout();
               Navigator.pushReplacementNamed(context, AppRoutes.login);
             },
+            color: Colors.red,
           ),
         ],
       ),
       body: Container(
         decoration: BoxDecoration(
+          color: Colors.black87,
           image: DecorationImage(
             image: NetworkImage(
                 'https://images.unsplash.com/photo-1618944913860-818edec37cae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'),
@@ -124,7 +127,7 @@ class HomeScreen extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      color: Colors.black.withOpacity(0.7),
+      color: Colors.white.withOpacity(0.1),
       child: InkWell(
         onTap: () {
           Navigator.pushNamed(context, route, arguments: arguments);

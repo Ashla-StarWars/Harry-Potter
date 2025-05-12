@@ -37,8 +37,11 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text(_showIdInput ? 'Buscar Personaje' : 'Detalle del Personaje'),
+        iconTheme: IconThemeData(color: Colors.amber),
+        title: Text(_showIdInput ? 'Buscar Personaje' : 'Detalle del Personaje',
+            style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
       ),
       body: _showIdInput ? _buildSearchView() : _buildCharacterDetailView(),
@@ -55,7 +58,7 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
         children: [
           Text(
             'Ingrese el ID del personaje o selecciónelo de la lista',
-            style: TextStyle(fontSize: 16),
+            style: TextStyle(fontSize: 16, color: Colors.white),
           ),
           SizedBox(height: 16),
           Row(
@@ -66,6 +69,10 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
                   decoration: InputDecoration(
                     labelText: 'ID del personaje',
                     border: OutlineInputBorder(),
+                    labelStyle: TextStyle(color: Colors.white70),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.amber),
+                    ),
                   ),
                 ),
               ),
@@ -74,7 +81,7 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.amber,
                   foregroundColor: Colors.black,
-                  padding: EdgeInsets.symmetric(vertical: 16),
+                  padding: EdgeInsets.symmetric(vertical: 8),
                 ),
                 onPressed: () {
                   if (_idController.text.isNotEmpty) {
@@ -92,7 +99,8 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
           SizedBox(height: 24),
           Text(
             'O seleccione un personaje:',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,
+                color: Colors.white),
           ),
           SizedBox(height: 8),
           Expanded(
@@ -129,10 +137,12 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
                           : CircleAvatar(
                               child: Icon(Icons.person),
                             ),
-                      title: Text(character.name),
+                      title: Text(character.name,
+                          style: TextStyle(color: Colors.white)),
                       subtitle: Text(character.house.isNotEmpty
                           ? 'Casa: ${character.house}'
-                          : character.species),
+                          : character.species,
+                          style: TextStyle(color: Colors.white70)),
                       onTap: () {
                         setState(() {
                           _selectedCharacterId = character.id;
@@ -247,6 +257,7 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
 
   Widget _buildCharacterInfo(Character character) {
     return Card(
+      color: Colors.white.withOpacity(0.1),
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
@@ -256,13 +267,15 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
           children: [
             Text(
               character.name,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,
+                  color: Colors.amber),
             ),
             if (character.alternateNames.isNotEmpty) ...[
               SizedBox(height: 8),
               Text(
                 'También conocido como: ${character.alternateNames.join(", ")}',
-                style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+                style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic,
+                    color: Colors.white70),
               ),
             ],
             Divider(height: 24),
@@ -319,14 +332,14 @@ class _CharacterDetailScreenState extends State<CharacterDetailScreen> {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.black54,
+                color: Colors.white,
               ),
             ),
           ),
           Expanded(
             child: Text(
               value,
-              style: valueStyle ?? TextStyle(fontSize: 16),
+              style: valueStyle ?? TextStyle(fontSize: 16, color: Colors.white70),
             ),
           ),
         ],

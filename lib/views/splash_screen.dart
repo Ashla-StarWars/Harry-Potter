@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import '../routes/routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -6,27 +7,28 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    
+
     // Configure animation
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 2),
     );
-    
+
     _animation = CurvedAnimation(
       parent: _controller,
       curve: Curves.easeIn,
     );
-    
+
     _controller.forward();
-    
+
     // Navigate to login after splash
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, AppRoutes.login);
@@ -49,10 +51,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.network(
-                'https://upload.wikimedia.org/wikipedia/commons/6/6e/Harry_Potter_wordmark.svg',
+              SvgPicture.asset(
+                'assets/images/Harry_Potter_wordmark.svg',
+                width: 150,
                 height: 150,
-                color: Colors.white,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
               SizedBox(height: 30),
               CircularProgressIndicator(
