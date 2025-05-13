@@ -149,7 +149,132 @@ Expanded(
 
 ---
 
-### 4. **Consumo de la API**
+### 4. **Modelos: Character y Spell**
+
+Los modelos representan las entidades principales de la API. Aquí se encuentran los modelos `Character` y `Spell`, utilizados para mapear los datos de la API a objetos de Dart.
+
+#### Modelo `Character`
+
+```dart name=lib/models/character.dart
+class Character {
+  final String id;
+  final String name;
+  final List<String> alternateNames;
+  final String species;
+  final String gender;
+  final String house;
+  final String dateOfBirth;
+  final int yearOfBirth;
+  final bool wizard;
+  final String ancestry;
+  final String eyeColour;
+  final String hairColour;
+  final Wand wand;
+  final String patronus;
+  final bool hogwartsStudent;
+  final bool hogwartsStaff;
+  final String actor;
+  final List<String> alternateActors;
+  final bool alive;
+  final String image;
+
+  Character({
+    required this.id,
+    required this.name,
+    required this.alternateNames,
+    required this.species,
+    required this.gender,
+    required this.house,
+    required this.dateOfBirth,
+    required this.yearOfBirth,
+    required this.wizard,
+    required this.ancestry,
+    required this.eyeColour,
+    required this.hairColour,
+    required this.wand,
+    required this.patronus,
+    required this.hogwartsStudent,
+    required this.hogwartsStaff,
+    required this.actor,
+    required this.alternateActors,
+    required this.alive,
+    required this.image,
+  });
+
+  factory Character.fromJson(Map<String, dynamic> json) {
+    return Character(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      alternateNames: List<String>.from(json['alternate_names'] ?? []),
+      species: json['species'] ?? '',
+      gender: json['gender'] ?? '',
+      house: json['house'] ?? '',
+      dateOfBirth: json['dateOfBirth'] ?? '',
+      yearOfBirth: json['yearOfBirth'] ?? 0,
+      wizard: json['wizard'] ?? false,
+      ancestry: json['ancestry'] ?? '',
+      eyeColour: json['eyeColour'] ?? '',
+      hairColour: json['hairColour'] ?? '',
+      wand: Wand.fromJson(json['wand'] ?? {}),
+      patronus: json['patronus'] ?? '',
+      hogwartsStudent: json['hogwartsStudent'] ?? false,
+      hogwartsStaff: json['hogwartsStaff'] ?? false,
+      actor: json['actor'] ?? '',
+      alternateActors: List<String>.from(json['alternate_actors'] ?? []),
+      alive: json['alive'] ?? true,
+      image: json['image'] ?? '',
+    );
+  }
+}
+
+class Wand {
+  final String wood;
+  final String core;
+  final double? length;
+
+  Wand({
+    required this.wood,
+    required this.core,
+    this.length,
+  });
+
+  factory Wand.fromJson(Map<String, dynamic> json) {
+    return Wand(
+      wood: json['wood'] ?? '',
+      core: json['core'] ?? '',
+      length: json['length'] != null ? json['length'].toDouble() : null,
+    );
+  }
+}
+```
+
+#### Modelo `Spell`
+
+```dart name=lib/models/spell.dart
+class Spell {
+  final String id;
+  final String name;
+  final String description;
+
+  Spell({
+    required this.id,
+    required this.name,
+    required this.description,
+  });
+
+  factory Spell.fromJson(Map<String, dynamic> json) {
+    return Spell(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      description: json['description'] ?? '',
+    );
+  }
+}
+```
+
+---
+
+### 5. **Consumo de la API**
 
 El archivo `harry_potter_api_service.dart` contiene todas las peticiones HTTP como obtener personajes o hechizos.
 
@@ -170,7 +295,7 @@ Future<List<Character>> getAllCharacters() async {
 
 ---
 
-### 5. **Controlador de Personajes**
+### 6. **Controlador de Personajes**
 
 El controlador de personajes maneja la lógica de negocio y el estado de los personajes.
 
@@ -197,29 +322,6 @@ class CharacterController extends ChangeNotifier {
 
 **Captura del Código:**
 ![Character Controller](assets/screenshots/character_controller.png)
-
----
-
-### 6. **Pantalla de Personajes**
-
-La pantalla de personajes utiliza un `ListView` para mostrar personajes obtenidos de la API.
-
-```dart name=lib/views/characters/all_characters_screen.dart
-ListView.builder(
-  itemCount: controller.characters.length,
-  itemBuilder: (context, index) {
-    final character = controller.characters[index];
-    return ListTile(
-      title: Text(character.name),
-      subtitle: Text(character.house),
-      leading: Image.network(character.image, fit: BoxFit.cover),
-    );
-  },
-),
-```
-
-**Captura del Código:**
-![All Characters Screen](assets/screenshots/all_characters_screen.png)
 
 ---
 
